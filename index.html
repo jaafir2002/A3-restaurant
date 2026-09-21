@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A3 Restaurant — Smashed Hot. Stacked Bold.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-dark:#0F0805;
+  --bg-dark-2:#1A0F0A;
+  --bg-dark-3:#1E130D;
+  --cream:#FFF6E0;
+  --cream-2:#FFFBEB;
+  --surface:#FFFFFF;
+  --surface-dark:#231A14;
+  --text-dark:#FFF7ED;
+  --text-cream:#1C1917;
+  --muted-dark:#A8A29E;
+  --muted-cream:#78716C;
+  --accent:#FF3B0A;
+  --accent-hover:#E63509;
+  --accent-yellow:#FFC700;
+  --border-dark:#2E211B;
+  --border-cream:#F5E6C8;
+  --radius:20px;
+  --radius-sm:14px;
+  --radius-pill:999px;
+  --shadow:0 12px 40px rgba(0,0,0,.35);
+  --shadow-sm:0 4px 20px rgba(0,0,0,.18);
+  --max:1280px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg-dark);color:var(--text-dark);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip:focus{left:16px;top:16px;width:auto;height:auto;background:#fff;color:#000;padding:8px 14px;z-index:9999;border-radius:8px}
+/* NAV */
+.nav-wrap{position:sticky;top:0;z-index:50;background:rgba(15,8,5,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-dark)}
+.nav{max-width:var(--max);margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:'Anton',Impact,sans-serif;font-size:22px;letter-spacing:.04em;line-height:1;display:flex;align-items:center;gap:10px}
+.logo i{width:32px;height:32px;background:var(--accent);border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:14px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-dark);transition:.2s;position:relative}
+.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--text-dark)}
+.nav-links a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent)}
+.btn-pill{background:var(--accent);color:#fff;border:none;padding:10px 18px;border-radius:var(--radius-pill);font-weight:700;font-size:13px;letter-spacing:.04em;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-pill:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.btn-ghost{border:1px solid rgba(255,255,255,.18);color:var(--text-dark);padding:10px 18px;border-radius:var(--radius-pill);background:transparent;font-weight:700;font-size:13px;transition:.2s}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.hamburger{display:none;background:none;border:1px solid var(--border-dark);width:42px;height:42px;border-radius:10px;place-items:center;color:var(--text-dark)}
+@media(max-width:900px){.nav-links{display:none}.hamburger{display:grid}.nav{padding:12px 16px}}
+.mobile-drawer{position:fixed;inset:0;z-index:60;background:var(--bg-dark);padding:24px;display:none;flex-direction:column;gap:24px}
+.mobile-drawer.open{display:flex}
+.mobile-drawer a{font-family:'Anton',sans-serif;font-size:36px;letter-spacing:.02em}
+/* TICKER */
+.ticker{background:var(--accent-yellow);color:#1A0F0A;overflow:hidden;white-space:nowrap;border-y:1px solid #000}
+.ticker-track{display:inline-flex;animation:marquee 22s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker span{font-family:'Anton',sans-serif;font-size:14px;letter-spacing:.12em;padding:10px 18px;display:inline-flex;align-items:center;gap:18px}
+.ticker span i{width:6px;height:6px;background:#000;border-radius:50%;display:inline-block}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.ticker-track{animation:none}}
+/* SECTIONS */
+.section{padding:64px 20px}
+.section-inner{max-width:var(--max);margin:0 auto}
+.cream{background:var(--cream);color:var(--text-cream)}
+.dark{background:var(--bg-dark);color:var(--text-dark)}
+.eyebrow{font-size:11px;letter-spacing:.18em;font-weight:700;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.eyebrow::before{content:"";width:24px;height:2px;background:var(--accent);display:inline-block}
+.dark .eyebrow{color:var(--accent-yellow)}
+.dark .eyebrow::before{background:var(--accent-yellow)}
+.h-display{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;line-height:.9;letter-spacing:.01em}
+.h-display span{color:var(--accent)}
+.cream .h-display span{color:var(--accent)}
+/* HERO */
+.hero{padding:28px 20px 40px;display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;max-width:var(--max);margin:0 auto;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 400px at 70% 10%, rgba(255,59,10,.28), transparent 60%), radial-gradient(500px 300px at 10% 90%, rgba(255,199,0,.12), transparent 60%);pointer-events:none}
+.hero-copy{position:relative;z-index:1;padding:12px 0}
+.hero h1{font-family:'Anton',sans-serif;font-size:clamp(44px, 6vw, 72px);line-height:.88;text-transform:uppercase;letter-spacing:.01em}
+.hero h1 em{font-style:normal;color:var(--accent-yellow);-webkit-text-stroke:1px rgba(255,199,0,.0)}
+.hero p{color:var(--muted-dark);margin:16px 0 22px;max-width:520px;font-size:15px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.mini-stats{display:flex;gap:10px;flex-wrap:wrap}
+.mini-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(6px);padding:10px 14px;border-radius:14px;display:flex;align-items:center;gap:10px;min-width:140px}
+.mini-card b{font-size:13px}
+.mini-card small{color:var(--muted-dark);font-size:11px;display:block}
+.hero-visual{position:relative;z-index:1;display:grid;place-items:center}
+.hero-burger{width:100%;max-width:560px;aspect-ratio:1.15;object-fit:cover;border-radius:24px;box-shadow:var(--shadow);transform:rotate(-1deg);animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:rotate(-1deg) translateY(0)}50%{transform:rotate(-1deg) translateY(-8px)}}
+@media(prefers-reduced-motion:reduce){.hero-burger{animation:none}}
+@media(max-width:900px){.hero{grid-template-columns:1fr;gap:20px}.hero-visual{order:-1}.hero-burger{max-width:420px;margin:0 auto}}
+/* INFERNO */
+.inferno{display:grid;grid-template-columns:.95fr 1.05fr;gap:40px;align-items:center}
+.inferno img{width:100%;aspect-ratio:1.05;object-fit:cover;border-radius:20px;background:#000}
+.inferno h2{font-family:'Anton',sans-serif;font-size:clamp(32px,4vw,48px);line-height:.9;text-transform:uppercase}
+.inferno p{color:var(--muted-dark);margin:14px 0 18px;font-size:15px}
+.price-row{display:flex;align-items:center;gap:14px;margin:14px 0}
+.price{font-family:'Anton',sans-serif;font-size:28px;color:var(--accent-yellow)}
+.old{color:var(--muted-dark);text-decoration:line-through;font-size:14px}
+@media(max-width:900px){.inferno{grid-template-columns:1fr}}
+/* CARDS */
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
+@media(max-width:1000px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grid-4{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border-cream);border-radius:20px;overflow:hidden;transition:.25s;position:relative}
+.card:hover{transform:translateY(-6px);box-shadow:0 16px 32px rgba(28,10,0,.12);border-color:var(--accent)}
+.card img{width:100%;aspect-ratio:1.1;object-fit:cover}
+.card-body{padding:14px 14px 16px}
+.badge{position:absolute;top:10px;left:10px;background:#111;color:#fff;font-size:10px;letter-spacing:.1em;font-weight:700;padding:6px 8px;border-radius:999px}
+.card h3{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;line-height:1.2}
+.card p{color:var(--muted-cream);font-size:12px;margin:6px 0 10px}
+.card-foot{display:flex;align-items:center;justify-content:space-between}
+.card-foot b{font-family:'Anton',sans-serif;font-size:18px}
+.btn-sm{background:#111;color:#fff;border:none;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:700;transition:.2s}
+.btn-sm:hover{background:var(--accent)}
+/* REAL INGREDIENTS */
+.real{display:grid;grid-template-columns:.95fr 1.05fr;gap:28px;align-items:center}
+.real img.main{width:100%;aspect-ratio:1.1;object-fit:cover;border-radius:20px}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.feat{background:var(--surface);border:1px solid var(--border-cream);border-radius:16px;padding:14px;display:flex;gap:10px;align-items:flex-start}
+.feat i{width:36px;height:36px;border-radius:10px;background:var(--cream);display:grid;place-items:center;flex-shrink:0;font-style:normal}
+.feat h4{font-size:13px;font-weight:700}
+.feat p{font-size:11px;color:var(--muted-cream)}
+@media(max-width:900px){.real{grid-template-columns:1fr}.feat-grid{grid-template-columns:1fr 1fr}}
+/* QUALITY */
+.quality{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.steps{display:grid;gap:14px;margin-top:18px}
+.step{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);padding:14px;border-radius:16px}
+.step n{width:32px;height:32px;border-radius:50%;background:var(--accent);display:grid;place-items:center;font-weight:800;font-size:13px;flex-shrink:0}
+.step h4{font-size:14px}
+.step p{font-size:12px;color:var(--muted-dark)}
+.quality img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px}
+@media(max-width:900px){.quality{grid-template-columns:1fr}}
+/* PAIRED */
+.paired{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.paired .box{background:var(--surface);border:1px solid var(--border-cream);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:260px}
+.paired .box img{width:100%;height:100%;object-fit:cover}
+.paired .box .txt{padding:18px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.paired .box h3{font-family:'Anton',sans-serif;font-size:22px;line-height:.9;text-transform:uppercase}
+.paired .box p{font-size:12px;color:var(--muted-cream)}
+.pill-stats{display:flex;gap:8px;margin-top:8px}
+.pill-stats span{background:var(--cream);padding:6px 10px;border-radius:999px;font-size:11px;font-weight:700}
+@media(max-width:800px){.paired{grid-template-columns:1fr}.paired .box{grid-template-columns:1fr}}
+/* CTA BAND */
+.cta-band{background:var(--bg-dark);border:1px solid var(--border-dark);border-radius:24px;padding:24px;display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;overflow:hidden;position:relative}
+.cta-band::after{content:"A3 RESTAURANT";position:absolute;right:-10px;bottom:-10px;font-family:'Anton',sans-serif;font-size:90px;color:rgba(255,255,255,.04);pointer-events:none;letter-spacing:.04em}
+.cta-band h2{font-family:'Anton',sans-serif;font-size:32px;line-height:.9;text-transform:uppercase}
+.cta-band p{color:var(--muted-dark);font-size:13px;margin:10px 0 14px}
+.cta-band img{width:100%;border-radius:18px;aspect-ratio:1.15;object-fit:cover}
+@media(max-width:800px){.cta-band{grid-template-columns:1fr}}
+/* FOOTER */
+footer{border-top:1px solid var(--border-dark);padding:36px 20px 18px;background:var(--bg-dark)}
+.footer-grid{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:24px}
+@media(max-width:800px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.footer-grid{grid-template-columns:1fr}}
+.foot-logo{font-family:'Anton',sans-serif;font-size:22px}
+.foot-muted{color:var(--muted-dark);font-size:12px;margin-top:8px}
+.watermark{max-width:var(--max);margin:24px auto 0;text-align:center;font-family:'Anton',sans-serif;font-size:clamp(40px,12vw,120px);letter-spacing:.06em;line-height:.9;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.08)}
+.watermark span{color:var(--accent)}
+.reveal{opacity:0;transform:translateY(16px);transition:.6s}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="nav-wrap">
+  <nav class="nav" aria-label="Primary">
+    <a href="index.html" class="logo" aria-label="A3 Restaurant home"><i>◉</i> A3 RESTAURANT</a>
+    <div class="nav-links">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="story.html">Story</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reserve.html">Reserve</a>
+      <a href="reserve.html#form" class="btn-pill">Get in touch →</a>
+    </div>
+    <button class="hamburger" id="ham" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">☰</button>
+  </nav>
+</div>
+<div class="mobile-drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu">
+  <button id="close" style="align-self:flex-end;background:none;border:1px solid var(--border-dark);color:#fff;width:42px;height:42px;border-radius:10px">✕</button>
+  <a href="index.html">Home</a><a href="menu.html">Menu</a><a href="story.html">Story</a><a href="gallery.html">Gallery</a><a href="reserve.html">Reserve</a>
+  <a href="reserve.html#form" class="btn-pill" style="width:fit-content">Get in touch →</a>
+</div>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>A3 RESTAURANT <i></i> SMASHED HOT <i></i> STACKED BOLD <i></i> WOOD-FIRED <i></i> SLOW-GROWN</span>
+    <span>A3 RESTAURANT <i></i> SMASHED HOT <i></i> STACKED BOLD <i></i> WOOD-FIRED <i></i> SLOW-GROWN</span>
+    <span>A3 RESTAURANT <i></i> SMASHED HOT <i></i> STACKED BOLD <i></i> WOOD-FIRED <i></i> SLOW-GROWN</span>
+    <span>A3 RESTAURANT <i></i> SMASHED HOT <i></i> STACKED BOLD <i></i> WOOD-FIRED <i></i> SLOW-GROWN</span>
+  </div>
+</div>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-copy reveal">
+    <div class="eyebrow">Est. 2008 • Fire & Soil • Ostuni-inspired</div>
+    <h1>SMASHED HOT.<br>STACKED <span style="color:var(--accent-yellow)">BOLD.</span></h1>
+    <p>Wood-fired smash burgers, slow-grown ingredients, and buns toasted in beef dripping. Built for fast decisions, made for lingering.</p>
+    <div class="hero-ctas">
+      <a href="menu.html" class="btn-pill">Order Now — From Rs. 890 →</a>
+      <a href="story.html" class="btn-ghost">Our Story</a>
+    </div>
+    <div class="mini-stats">
+      <div class="mini-card"><span>★ 4.9</span><div><b>1.2k reviews</b><small>Delivery & dine-in</small></div></div>
+      <div class="mini-card">🕒 <div><b>Open till 11pm</b><small>Daily 11am — 11pm</small></div></div>
+      <div class="mini-card">📍 <div><b>Via Fiori 12</b><small>Lahore • Karachi</small></div></div>
+    </div>
+  </div>
+  <div class="hero-visual reveal">
+    <img class="hero-burger" src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=900&auto=format&fit=crop&q=80" alt="Double smash burger with cheese">
+  </div>
+</section>
+
+<!-- INFERNO STACK -->
+<section class="section dark reveal">
+  <div class="section-inner inferno">
+    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=900&auto=format&fit=crop&q=80" alt="Inferno stack burger">
+    <div>
+      <div class="eyebrow">Featured • Limited</div>
+      <h2>THE INFERNO<br><span style="color:var(--accent)">STACK</span></h2>
+      <p>Double 120g wagyu smash, aged cheddar, fire-charred jalapeños, nduja mayo, pickled onions. Smashed on a 340°C plancha, stacked in a potato-milk bun.</p>
+      <div class="price-row"><span class="price">Rs. 1,650</span><span class="old">Rs. 1,890</span> <span style="background:var(--accent-yellow);color:#000;font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px">SAVE 240</span></div>
+      <a href="menu.html" class="btn-pill">Add Inferno — Rs. 1,650</a>
+      <div style="margin-top:12px;color:var(--muted-dark);font-size:12px">🔥 847 ordered this week • Ready in 9 mins</div>
+    </div>
+  </div>
+</section>
+
+<!-- BEST SELLERS -->
+<section class="section cream reveal">
+  <div class="section-inner">
+    <div class="eyebrow">Menu • Best sellers</div>
+    <div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap">
+      <h2 class="h-display" style="font-size:36px">THE BEST <span>SELLERS</span></h2>
+      <a href="menu.html" style="font-size:13px;font-weight:700;text-decoration:underline">View Full Menu →</a>
+    </div>
+    <div class="grid-4">
+      <article class="card"><span class="badge">BESTSELLER</span><img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&auto=format&fit=crop&q=80" alt="Classic smash"><div class="card-body"><h3>Classic Smash</h3><p>Single 120g, American cheese, pickles</p><div class="card-foot"><b>Rs. 890</b><a href="menu.html" class="btn-sm">Order</a></div></div></article>
+      <article class="card"><span class="badge" style="background:var(--accent)">HOT</span><img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=600&auto=format&fit=crop&q=80" alt="Inferno"><div class="card-body"><h3>Inferno Stack</h3><p>Double wagyu, nduja mayo, jalapeño</p><div class="card-foot"><b>Rs. 1,650</b><a href="menu.html" class="btn-sm">Order</a></div></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=600&auto=format&fit=crop&q=80" alt="Truffle"><div class="card-body"><h3>Truffle Mush</h3><p>Portobello, truffle aioli, gruyère</p><div class="card-foot"><b>Rs. 1,420</b><a href="menu.html" class="btn-sm">Order</a></div></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600&auto=format&fit=crop&q=80" alt="BBQ"><div class="card-body"><h3>BBQ Brisket</h3><p>12h brisket, slaw, pickled onions</p><div class="card-foot"><b>Rs. 1,580</b><a href="menu.html" class="btn-sm">Order</a></div></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- REAL INGREDIENTS -->
+<section class="section cream reveal" style="padding-top:0">
+  <div class="section-inner real">
+    <img class="main" src="https://images.unsplash.com/photo-1547592180-85f173990554?w=800&auto=format&fit=crop&q=80" alt="Fresh ingredients">
+    <div>
+      <div class="eyebrow">Sourcing</div>
+      <h2 class="h-display" style="font-size:34px">REAL INGREDIENTS.<br><span>BIG FLAVOR.</span></h2>
+      <p style="color:var(--muted-cream);font-size:14px;margin:10px 0 16px">70 local farms, dry-aged beef, milk buns baked twice daily. No shortcuts — just fire, salt, time.</p>
+      <div class="feat-grid">
+        <div class="feat"><i>🥩</i><div><h4>Fresh Wagyu Blend</h4><p>80/20, ground daily</p></div></div>
+        <div class="feat"><i>🔥</i><div><h4>Wood-Fired Plancha</h4><p>340°C sear, every time</p></div></div>
+        <div class="feat"><i>🥬</i><div><h4>Farm Vegetables</h4><p>Picked <24h</p></div></div>
+        <div class="feat"><i>🧀</i><div><h4>Aged Cheddar</h4><p>18 months, sharp</p></div></div>
+      </div>
+      <a href="story.html" class="btn-pill" style="margin-top:16px;background:#111">Meet Our Farms →</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY -->
+<section class="section dark reveal">
+  <div class="section-inner quality">
+    <div>
+      <div class="eyebrow">Delivery</div>
+      <h2 class="h-display" style="font-size:32px">QUALITY THAT<br>TRAVELS WITH YOU</h2>
+      <div class="steps">
+        <div class="step"><n>1</n><div><h4>Ventilated Box, No Steam</h4><p>Patented airflow keeps bun crisp, cheese melted.</p></div></div>
+        <div class="step"><n>2</n><div><h4>9-Minute Promise</h4><p>Fire to door in 22 mins average, tracked live.</p></div></div>
+        <div class="step"><n>3</n><div><h4>Plated at Arrival</h4><p>Unbox like dine-in — stack stays stacked.</p></div></div>
+      </div>
+      <a href="gallery.html" class="btn-pill" style="margin-top:14px">See Unboxing →</a>
+    </div>
+    <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=800&auto=format&fit=crop&q=80" alt="Burger in box">
+  </div>
+</section>
+
+<!-- PAIRED -->
+<section class="section cream reveal">
+  <div class="section-inner paired">
+    <div class="box">
+      <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&auto=format&fit=crop&q=80" alt="Guest eating">
+      <div class="txt"><div class="eyebrow">Community</div><h3>COME HUNGRY<br>LEAVE LOADED.</h3><p>“Best smash in town — crust, cheese pull, zero grease.” — 2.4k 5★ reviews</p><div class="pill-stats"><span>25k Orders</span><span>4.9★</span></div><a href="gallery.html" class="btn-sm" style="width:fit-content;margin-top:6px;background:var(--accent)">View Gallery</a></div>
+    </div>
+    <div class="box">
+      <div class="txt"><div class="eyebrow">Visit</div><h3>HOT, FRESH<br>AND HEARDY.</h3><p>Two floors, open kitchen, plancha on view. Walk-ins welcome, fire always on.</p><div class="pill-stats"><span>Open 11-11</span><span>2 Floors</span></div><a href="reserve.html" class="btn-sm" style="width:fit-content;margin-top:6px;background:#111">Reserve Table</a></div>
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&auto=format&fit=crop&q=80" alt="Restaurant interior">
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cream reveal" style="padding-top:0">
+  <div class="section-inner">
+    <div class="cta-band">
+      <div>
+        <div class="eyebrow">Dine-in & Delivery</div>
+        <h2>READY TO BRING<br><span style="color:var(--accent)">THE FIRE?</span></h2>
+        <p>Reserve a table or fire an order — same kitchen, same crust, wherever you eat.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><a href="reserve.html#form" class="btn-pill">Reserve Table →</a><a href="menu.html" class="btn-ghost" style="border-color:var(--border-cream);color:var(--text-cream)">Order Delivery</a></div>
+      </div>
+      <img src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=800&auto=format&fit=crop&q=80" alt="Burger close">
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div><div class="foot-logo">A3 RESTAURANT</div><p class="foot-muted">Smashed hot. Stacked bold. Wood-fired in Lahore & Karachi. Buns baked twice daily, beef ground daily, fire never off.</p><p class="foot-muted" style="margin-top:12px">© 2026 A3 Restaurant. Crafted with fire.</p></div>
+    <div><b style="font-size:12px;letter-spacing:.1em">MENU</b><p class="foot-muted" style="line-height:2"><a href="menu.html">Best Sellers</a><br><a href="menu.html">Inferno Stack</a><br><a href="menu.html">Sides & Shakes</a></p></div>
+    <div><b style="font-size:12px;letter-spacing:.1em">VISIT</b><p class="foot-muted">Via Fiori 12, Gulberg<br>Lahore • +92 300 123 4567<br>Open Daily 11am — 11pm</p></div>
+    <div><b style="font-size:12px;letter-spacing:.1em">FOLLOW</b><p class="foot-muted" style="line-height:2"><a href="#">Instagram</a><br><a href="#">TikTok</a><br><a href="reserve.html">Contact</a></p></div>
+  </div>
+  <div class="watermark">BUN <span>FIRE</span></div>
+  <div style="max-width:var(--max);margin:12px auto 0;color:var(--muted-dark);font-size:11px;line-height:1.6;text-align:center">A3 Restaurant is a bold burger restaurant concept designed around a fiery brand identity, mouth-watering product visuals, and a smooth online ordering experience. Dark cinematic backgrounds, red-orange fire accents, bold display typography, and high-contrast food imagery create a strong first impression for a modern smash burger brand.</div>
+</footer>
+
+<script>
+const ham=document.getElementById('ham'), drawer=document.getElementById('drawer'), close=document.getElementById('close');
+ham.addEventListener('click',()=>{const o=drawer.classList.toggle('open'); ham.setAttribute('aria-expanded',o); document.body.style.overflow=o?'hidden':''});
+close.addEventListener('click',()=>{drawer.classList.remove('open'); ham.setAttribute('aria-expanded','false'); document.body.style.overflow=''});
+drawer.addEventListener('click',e=>{if(e.target===drawer){drawer.classList.remove('open')}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape') drawer.classList.remove('open')});
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting) e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

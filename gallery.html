@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — A3 Restaurant</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg-dark:#0F0805;--cream:#FFF6E0;--surface:#fff;--text-dark:#FFF7ED;--text-cream:#1C1917;--muted-dark:#A8A29E;--muted-cream:#78716C;--accent:#FF3B0A;--accent-yellow:#FFC700;--border-dark:#2E211B;--border-cream:#F5E6C8;--max:1280px}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text-cream);line-height:1.6}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit;cursor:pointer}:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.nav-wrap{position:sticky;top:0;z-index:50;background:rgba(15,8,5,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-dark)}
+.nav{max-width:var(--max);margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Anton',sans-serif;font-size:22px;color:var(--text-dark);display:flex;gap:10px;align-items:center}
+.logo i{width:32px;height:32px;background:var(--accent);border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:14px}
+.nav-links{display:flex;gap:28px;align-items:center}.nav-links a{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-dark)}
+.nav-links a[aria-current="page"]{color:var(--text-dark);position:relative}.nav-links a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent)}
+.btn-pill{background:var(--accent);color:#fff;border:none;padding:10px 18px;border-radius:999px;font-weight:700;font-size:13px}
+.hamburger{display:none;background:none;border:1px solid var(--border-dark);width:42px;height:42px;border-radius:10px;place-items:center;color:var(--text-dark)}
+@media(max-width:900px){.nav-links{display:none}.hamburger{display:grid}}
+.mobile-drawer{position:fixed;inset:0;z-index:60;background:var(--bg-dark);padding:24px;display:none;flex-direction:column;gap:24px}
+.mobile-drawer.open{display:flex}.mobile-drawer a{font-family:'Anton',sans-serif;font-size:36px;color:var(--text-dark)}
+.ticker{background:var(--accent-yellow);overflow:hidden;white-space:nowrap}.ticker-track{display:inline-flex;animation:marquee 22s linear infinite}.ticker span{font-family:'Anton',sans-serif;font-size:14px;letter-spacing:.12em;padding:10px 18px;display:inline-flex;gap:18px;align-items:center}
+.ticker span i{width:6px;height:6px;background:#000;border-radius:50%;display:inline-block}@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.section{padding:48px 20px}.section-inner{max-width:var(--max);margin:0 auto}
+.eyebrow{font-size:11px;letter-spacing:.18em;font-weight:700;text-transform:uppercase;color:var(--accent);display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.eyebrow::before{content:"";width:24px;height:2px;background:var(--accent)}
+.h-display{font-family:'Anton',sans-serif;text-transform:uppercase;line-height:.9}
+.hero-mini{background:var(--bg-dark);color:var(--text-dark);padding:40px 20px;text-align:center}
+.hero-mini h1{font-family:'Anton',sans-serif;font-size:48px;line-height:.9;text-transform:uppercase}
+.paired{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.paired .box{background:var(--surface);border:1px solid var(--border-cream);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:260px}
+.paired .box img{width:100%;height:100%;object-fit:cover}
+.paired .box .txt{padding:18px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.paired .box h3{font-family:'Anton',sans-serif;font-size:22px;line-height:.9;text-transform:uppercase}
+.paired .box p{font-size:12px;color:var(--muted-cream)}
+.pill-stats{display:flex;gap:8px;margin-top:8px}.pill-stats span{background:var(--cream);padding:6px 10px;border-radius:999px;font-size:11px;font-weight:700}
+@media(max-width:800px){.paired{grid-template-columns:1fr}.paired .box{grid-template-columns:1fr}}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.gallery button{padding:0;border:none;overflow:hidden;border-radius:16px;position:relative;background:#000}
+.gallery img{width:100%;aspect-ratio:1;object-fit:cover;transition:.3s}
+.gallery button:hover img{transform:scale(1.04)}
+.gallery button::after{content:"⤢";position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.6);color:#fff;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:12px}
+@media(max-width:800px){.gallery{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.gallery{grid-template-columns:1fr}}
+dialog{border:none;padding:0;background:transparent;max-width:90vw;margin:auto}
+dialog::backdrop{background:rgba(0,0,0,.75)}
+dialog img{max-width:90vw;max-height:85vh;border-radius:16px}
+dialog button{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.6);color:#fff;border:none;width:36px;height:36px;border-radius:50%}
+footer{border-top:1px solid var(--border-dark);padding:36px 20px;background:var(--bg-dark);color:var(--text-dark)}
+.footer-grid{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:24px}
+.foot-muted{color:var(--muted-dark);font-size:12px;margin-top:8px}
+.watermark{max-width:var(--max);margin:24px auto 0;text-align:center;font-family:'Anton',sans-serif;font-size:clamp(40px,12vw,120px);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.08)}
+.reveal{opacity:0;transform:translateY(16px);transition:.6s}.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body><a href="#main" class="skip" style="position:absolute;left:-999px">Skip to content</a><style>.skip:focus{left:16px;top:16px;width:auto;height:auto;background:#fff;color:#000;padding:8px 14px;position:fixed;z-index:9999;border-radius:8px}</style>
+<div class="nav-wrap"><nav class="nav"><a href="index.html" class="logo"><i>◉</i> A3 RESTAURANT</a><div class="nav-links"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="story.html">Story</a><a href="gallery.html" aria-current="page">Gallery</a><a href="reserve.html">Reserve</a><a href="reserve.html#form" class="btn-pill">Get in touch →</a></div><button class="hamburger" id="ham">☰</button></nav></div>
+<div class="mobile-drawer" id="drawer"><button id="close" style="align-self:flex-end;background:none;border:1px solid #2E211B;color:#fff;width:42px;height:42px;border-radius:10px">✕</button><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="story.html">Story</a><a href="gallery.html">Gallery</a><a href="reserve.html">Reserve</a></div>
+<div class="ticker"><div class="ticker-track"><span>GALLERY <i></i> HOT, FRESH AND HEARDY <i></i> COME HUNGRY LEAVE LOADED</span><span>GALLERY <i></i> HOT, FRESH AND HEARDY <i></i> COME HUNGRY LEAVE LOADED</span><span>GALLERY <i></i> HOT, FRESH AND HEARDY <i></i> COME HUNGRY LEAVE LOADED</span><span>GALLERY <i></i> HOT, FRESH AND HEARDY <i></i> COME HUNGRY LEAVE LOADED</span></div></div>
+
+<main id="main"><div class="hero-mini"><h1>THE <span style="color:var(--accent)">GALLERY</span></h1><p>Two floors, open plancha, fire always on. Tap any image to expand.</p></div>
+
+<section class="section" style="background:var(--cream)">
+  <div class="section-inner reveal">
+    <div class="paired">
+      <div class="box"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&auto=format&fit=crop&q=80" alt="Guest"><div class="txt"><div class="eyebrow">Community</div><h3>COME HUNGRY<br>LEAVE LOADED.</h3><p>“Crust, cheese pull, zero grease.” — 2.4k 5★</p><div class="pill-stats"><span>25k Orders</span><span>4.9★</span></div></div></div>
+      <div class="box"><div class="txt"><div class="eyebrow">Visit</div><h3>HOT, FRESH<br>AND HEARDY.</h3><p>Open kitchen, plancha on view, walk-ins welcome.</p><div class="pill-stats"><span>Open 11-11</span><span>2 Floors</span></div></div><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&auto=format&fit=crop&q=80" alt="Interior"></div>
+    </div>
+    <div class="gallery" id="gallery">
+      <button aria-label="View image 1"><img src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=600&auto=format&fit=crop&q=80" alt="Burger 1" loading="lazy"></button>
+      <button aria-label="View image 2"><img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&auto=format&fit=crop&q=80" alt="Burger 2" loading="lazy"></button>
+      <button aria-label="View image 3"><img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=600&auto=format&fit=crop&q=80" alt="Burger 3" loading="lazy"></button>
+      <button aria-label="View image 4"><img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=600&auto=format&fit=crop&q=80" alt="Burger 4" loading="lazy"></button>
+      <button aria-label="View image 5"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&auto=format&fit=crop&q=80" alt="Interior 2" loading="lazy"></button>
+      <button aria-label="View image 6"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&auto=format&fit=crop&q=80" alt="Table" loading="lazy"></button>
+      <button aria-label="View image 7"><img src="https://images.unsplash.com/photo-1555992336-03a8a9d2562e?w=600&auto=format&fit=crop&q=80" alt="Chef" loading="lazy"></button>
+      <button aria-label="View image 8"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=600&auto=format&fit=crop&q=80" alt="Ingredients" loading="lazy"></button>
+      <button aria-label="View image 9"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600&auto=format&fit=crop&q=80" alt="Burger 5" loading="lazy"></button>
+    </div>
+  </div>
+</section>
+
+<dialog id="lightbox" aria-label="Image preview"><button id="lbClose" aria-label="Close">✕</button><img id="lbImg" src="" alt=""></dialog>
+
+<footer><div class="footer-grid"><div><div style="font-family:Anton,sans-serif;font-size:22px">A3 RESTAURANT</div><p class="foot-muted">Smashed hot. Stacked bold.</p></div><div><p class="foot-muted"><a href="menu.html">Menu</a></p></div><div><p class="foot-muted">Via Fiori 12, Gulberg</p></div><div><p class="foot-muted"><a href="reserve.html">Contact</a></p></div></div><div class="watermark">BUN <span style="color:var(--accent)">FIRE</span></div></main><footer>
+
+<script>
+const ham=document.getElementById('ham'),drawer=document.getElementById('drawer'),close=document.getElementById('close');
+ham.addEventListener('click',()=>drawer.classList.toggle('open'));close.addEventListener('click',()=>drawer.classList.remove('open'));
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),lbClose=document.getElementById('lbClose');
+document.getElementById('gallery').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  lbImg.src=b.querySelector('img').src.replace('w=600','w=1200'); lbImg.alt=b.querySelector('img').alt;
+  lb.showModal();
+});
+lbClose.addEventListener('click',()=>lb.close()); lb.addEventListener('click',e=>{if(e.target===lb) lb.close()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape' && lb.open) lb.close()});
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

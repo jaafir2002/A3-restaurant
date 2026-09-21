@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reserve — A3 Restaurant</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg-dark:#0F0805;--cream:#FFF6E0;--surface:#fff;--surface-dark:#231A14;--text-dark:#FFF7ED;--text-cream:#1C1917;--muted-dark:#A8A29E;--muted-cream:#78716C;--accent:#FF3B0A;--accent-hover:#E63509;--accent-yellow:#FFC700;--border-dark:#2E211B;--border-cream:#F5E6C8;--max:1280px}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text-cream);line-height:1.6}
+a{color:inherit;text-decoration:none}img{max-width:100%;display:block}button{font:inherit;cursor:pointer}:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.nav-wrap{position:sticky;top:0;z-index:50;background:rgba(15,8,5,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-dark)}
+.nav{max-width:var(--max);margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Anton',sans-serif;font-size:22px;color:var(--text-dark);display:flex;gap:10px;align-items:center}
+.logo i{width:32px;height:32px;background:var(--accent);border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:14px}
+.nav-links{display:flex;gap:28px;align-items:center}.nav-links a{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-dark)}
+.nav-links a[aria-current="page"]{color:var(--text-dark);position:relative}.nav-links a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent)}
+.btn-pill{background:var(--accent);color:#fff;border:none;padding:10px 18px;border-radius:999px;font-weight:700;font-size:13px}
+.btn-pill:hover{background:var(--accent-hover)}
+.hamburger{display:none;background:none;border:1px solid var(--border-dark);width:42px;height:42px;border-radius:10px;place-items:center;color:var(--text-dark)}
+@media(max-width:900px){.nav-links{display:none}.hamburger{display:grid}}
+.mobile-drawer{position:fixed;inset:0;z-index:60;background:var(--bg-dark);padding:24px;display:none;flex-direction:column;gap:24px}
+.mobile-drawer.open{display:flex}.mobile-drawer a{font-family:'Anton',sans-serif;font-size:36px;color:var(--text-dark)}
+.ticker{background:var(--accent-yellow);overflow:hidden;white-space:nowrap}.ticker-track{display:inline-flex;animation:marquee 22s linear infinite}.ticker span{font-family:'Anton',sans-serif;font-size:14px;letter-spacing:.12em;padding:10px 18px;display:inline-flex;gap:18px;align-items:center}
+.ticker span i{width:6px;height:6px;background:#000;border-radius:50%;display:inline-block}@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.section{padding:48px 20px}.section-inner{max-width:var(--max);margin:0 auto}
+.eyebrow{font-size:11px;letter-spacing:.18em;font-weight:700;text-transform:uppercase;color:var(--accent);display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.eyebrow::before{content:"";width:24px;height:2px;background:var(--accent)} .dark .eyebrow{color:var(--accent-yellow)}.dark .eyebrow::before{background:var(--accent-yellow)}
+.h-display{font-family:'Anton',sans-serif;text-transform:uppercase;line-height:.9}
+.hero-mini{background:var(--bg-dark);color:var(--text-dark);padding:40px 20px;text-align:center}
+.hero-mini h1{font-family:'Anton',sans-serif;font-size:48px;line-height:.9;text-transform:uppercase}
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.visit .card{background:var(--surface);border:1px solid var(--border-cream);border-radius:20px;padding:20px}
+.visit h3{font-family:'Anton',sans-serif;font-size:20px}
+.dl{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:12px;font-size:13px}
+.dl dt{color:var(--muted-cream)} .dl dd{font-weight:700}
+.map{height:280px;background:linear-gradient(135deg,#FFF6E0 0%, #FFE9A8 100%);border:1px solid var(--border-cream);border-radius:16px;position:relative;overflow:hidden;display:grid;place-items:center}
+.map::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg, transparent 0 38px, rgba(0,0,0,.04) 38px 39px), repeating-linear-gradient(90deg, transparent 0 38px, rgba(0,0,0,.04) 38px 39px)}
+.pin{position:relative;z-index:1;background:#111;color:#fff;padding:10px 14px;border-radius:999px;font-size:12px;font-weight:700;display:flex;gap:8px;align-items:center;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.cta-band{background:var(--bg-dark);border:1px solid var(--border-dark);border-radius:24px;padding:24px;display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;position:relative;overflow:hidden;color:var(--text-dark)}
+.cta-band::after{content:"A3 RESTAURANT";position:absolute;right:-10px;bottom:-10px;font-family:'Anton',sans-serif;font-size:90px;color:rgba(255,255,255,.04);pointer-events:none}
+.cta-band img{border-radius:18px;aspect-ratio:1.15;object-fit:cover;width:100%}
+@media(max-width:800px){.visit,.cta-band{grid-template-columns:1fr}}
+.form-wrap{background:var(--surface);border:1px solid var(--border-cream);border-radius:20px;padding:22px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+label{font-size:12px;font-weight:600;letter-spacing:.04em;display:block;margin-bottom:6px}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid var(--border-cream);border-radius:10px;font:inherit;background:#fff;transition:.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px rgba(255,59,10,.15)}
+.error{font-size:11px;color:var(--accent);margin-top:4px;display:none}
+.error.show{display:block}
+.input-err{border-color:var(--accent)!important}
+.success{background:#0f3a1f;color:#fff;padding:18px;border-radius:14px;display:none;text-align:center}
+.success.show{display:block}
+footer{border-top:1px solid var(--border-dark);padding:36px 20px;background:var(--bg-dark);color:var(--text-dark)}
+.footer-grid{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:24px}
+.foot-muted{color:var(--muted-dark);font-size:12px;margin-top:8px}
+.watermark{max-width:var(--max);margin:24px auto 0;text-align:center;font-family:'Anton',sans-serif;font-size:clamp(40px,12vw,120px);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.08)}
+.reveal{opacity:0;transform:translateY(16px);transition:.6s}.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body><a href="#main" class="skip" style="position:absolute;left:-999px">Skip to content</a><style>.skip:focus{left:16px;top:16px;width:auto;height:auto;background:#fff;color:#000;padding:8px 14px;position:fixed;z-index:9999;border-radius:8px}</style>
+<div class="nav-wrap"><nav class="nav"><a href="index.html" class="logo"><i>◉</i> A3 RESTAURANT</a><div class="nav-links"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="story.html">Story</a><a href="gallery.html">Gallery</a><a href="reserve.html" aria-current="page">Reserve</a><a href="#form" class="btn-pill">Get in touch →</a></div><button class="hamburger" id="ham">☰</button></nav></div>
+<div class="mobile-drawer" id="drawer"><button id="close" style="align-self:flex-end;background:none;border:1px solid #2E211B;color:#fff;width:42px;height:42px;border-radius:10px">✕</button><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="story.html">Story</a><a href="gallery.html">Gallery</a><a href="reserve.html">Reserve</a></div>
+<div class="ticker"><div class="ticker-track"><span>RESERVE <i></i> HOT, FRESH AND HEARDY <i></i> READY TO BRING THE FIRE</span><span>RESERVE <i></i> HOT, FRESH AND HEARDY <i></i> READY TO BRING THE FIRE</span><span>RESERVE <i></i> HOT, FRESH AND HEARDY <i></i> READY TO BRING THE FIRE</span><span>RESERVE <i></i> HOT, FRESH AND HEARDY <i></i> READY TO BRING THE FIRE</span></div></div>
+
+<main id="main"><div class="hero-mini"><h1>READY TO BRING<br><span style="color:var(--accent)">THE FIRE?</span></h1><p>Reserve a table or fire an order — same kitchen, same crust, wherever you eat.</p></div>
+
+<section class="section" style="background:var(--cream)">
+  <div class="section-inner reveal">
+    <div class="visit">
+      <div class="card">
+        <div class="eyebrow">Visit</div><h3>HOT, FRESH<br>AND HEARDY.</h3>
+        <p style="font-size:12px;color:var(--muted-cream);margin-top:6px">Two floors, open kitchen, plancha on view. Walk-ins welcome.</p>
+        <dl class="dl"><dt>Mon — Thu</dt><dd>11am — 10pm</dd><dt>Fri — Sat</dt><dd>11am — 11pm</dd><dt>Sunday</dt><dd>11am — 10pm</dd><dt>Phone</dt><dd>+92 300 123 4567</dd></dl>
+        <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><span style="background:var(--cream);padding:6px 10px;border-radius:999px;font-size:11px;font-weight:700">2 Floors</span><span style="background:var(--cream);padding:6px 10px;border-radius:999px;font-size:11px;font-weight:700">Open Kitchen</span></div>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Find us</div><h3>VIA FIORI 12, GULBERG</h3><p style="font-size:12px;color:var(--muted-cream)">Lahore — 5 min from MM Alam</p>
+        <div class="map" style="margin-top:12px"><div class="pin">📍 A3 Restaurant — Via Fiori 12</div></div>
+        <a href="https://maps.google.com/?q=Gulberg+Lahore" target="_blank" rel="noopener" class="btn-pill" style="display:inline-flex;margin-top:12px">Open in Google Maps →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section dark" style="background:var(--bg-dark);color:var(--text-dark)" id="form">
+  <div class="section-inner reveal">
+    <div class="cta-band" style="margin-bottom:18px">
+      <div><div class="eyebrow">Reserve</div><h2 class="h-display" style="font-size:32px">BOOK YOUR<br><span style="color:var(--accent)">TABLE</span></h2><p style="color:var(--muted-dark);font-size:13px;margin:10px 0">Tell us when you’re coming — we’ll keep the plancha hot. Confirmation in 2 mins.</p><p style="color:var(--muted-dark);font-size:11px">Walk-ins always welcome • Fire never off</p></div>
+      <img src="https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=800&auto=format&fit=crop&q=80" alt="Burger">
+    </div>
+
+    <div class="form-wrap" style="color:var(--text-cream)">
+      <div id="success" class="success" role="status"><b>🔥 Table confirmed!</b><p style="font-size:13px;margin-top:6px">We’ve saved your spot. Check SMS for confirmation #BF-<span id="ref"></span>. See you at the pass!</p></div>
+      <form id="reserveForm" novalidate style="display:grid;gap:14px">
+        <div class="form-grid">
+          <div><label for="name">Full name *</label><input id="name" name="name" autocomplete="name" placeholder="Ayesha Khan" required><div class="error" id="e-name">Enter your name</div></div>
+          <div><label for="phone">Phone *</label><input id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="+92 300 1234567" required><div class="error" id="e-phone">Enter a valid phone</div></div>
+        </div>
+        <div class="form-grid">
+          <div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com"><div class="error" id="e-email">Enter valid email</div></div>
+          <div><label for="guests">Guests *</label><select id="guests" required><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select><div class="error" id="e-guests">Select guests</div></div>
+        </div>
+        <div class="form-grid">
+          <div><label for="date">Date *</label><input id="date" type="date" required><div class="error" id="e-date">Select a date</div></div>
+          <div><label for="time">Time *</label><select id="time" required><option value="">Select</option><option>11:00</option><option>12:30</option><option>14:00</option><option>18:00</option><option>19:30</option><option>21:00</option></select><div class="error" id="e-time">Select time</div></div>
+        </div>
+        <div><label for="occ">Occasion</label><select id="occ"><option>Just hungry</option><option>Birthday</option><option>Date night</option><option>Business</option></select></div>
+        <div><label for="notes">Notes</label><textarea id="notes" rows="3" placeholder="Allergies, high chair, coal-free?"></textarea></div>
+        <button type="submit" class="btn-pill" style="justify-content:center;padding:14px">Confirm Reservation →</button>
+        <p style="font-size:11px;color:var(--muted-cream);text-align:center">By booking you agree to our fire-safety & no-show policy. Cancel free up to 2h before.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer><div class="footer-grid"><div><div style="font-family:Anton,sans-serif;font-size:22px">A3 RESTAURANT</div><p class="foot-muted">Smashed hot. Stacked bold.</p></div><div><p class="foot-muted"><a href="menu.html">Menu</a></p></div><div><p class="foot-muted">Via Fiori 12, Gulberg<br>Daily 11am — 11pm</p></div><div><p class="foot-muted"><a href="#">Instagram</a></p></div></div><div class="watermark">BUN <span style="color:var(--accent)">FIRE</span></div></main><footer>
+
+<script>
+const ham=document.getElementById('ham'),drawer=document.getElementById('drawer'),close=document.getElementById('close');
+ham.addEventListener('click',()=>drawer.classList.toggle('open'));close.addEventListener('click',()=>drawer.classList.remove('open'));
+document.getElementById('date').minAsDate=new Date().toISOString().split('T')[0]; document.getElementById('date').min=document.getElementById('date').minAsDate;
+const form=document.getElementById('reserveForm'), success=document.getElementById('success');
+function showErr(id,show){const e=document.getElementById('e-'+id),inp=document.getElementById(id); if(show){e.classList.add('show');inp.classList.add('input-err')}else{e.classList.remove('show');inp.classList.remove('input-err')}}
+form.addEventListener('submit',e=>{
+  e.preventDefault(); let ok=true;
+  const name=document.getElementById('name').value.trim(), phone=document.getElementById('phone').value.trim(), email=document.getElementById('email').value.trim(), guests=document.getElementById('guests').value, date=document.getElementById('date').value, time=document.getElementById('time').value;
+  if(!name){showErr('name',true); ok=false}else showErr('name',false);
+  if(!phone || phone.replace(/\D/g,'').length<10){showErr('phone',true); ok=false}else showErr('phone',false);
+  if(email && !/^\S+@\S+\.\S+$/.test(email)){showErr('email',true); ok=false}else showErr('email',false);
+  if(!guests){showErr('guests',true); ok=false}else showErr('guests',false);
+  if(!date){showErr('date',true); ok=false}else showErr('date',false);
+  if(!time){showErr('time',true); ok=false}else showErr('time',false);
+  if(!ok) return;
+  form.style.display='none'; success.classList.add('show'); document.getElementById('ref').textContent=Math.floor(1000+Math.random()*9000);
+  success.scrollIntoView({behavior:'smooth',block:'center'});
+});
+['name','phone','email','guests','date','time'].forEach(id=>{
+  const el=document.getElementById(id); el.addEventListener('blur',()=>{
+    if(id==='email' && !el.value) return showErr(id,false);
+    const v=el.value.trim(); if(!v) showErr(id,true); else if(id==='phone' && v.replace(/\D/g,'').length<10) showErr(id,true); else if(id==='email' && v && !/^\S+@\S+\.\S+$/.test(v)) showErr(id,true); else showErr(id,false);
+  });
+  el.addEventListener('input',()=>{document.getElementById('e-'+id).classList.remove('show'); el.classList.remove('input-err')});
+});
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
