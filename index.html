@@ -25,6 +25,11 @@
   --accent-yellow:#FFC700;
   --border-dark:#2E211B;
   --border-cream:#F5E6C8;
+  --title-dark:#FFF7ED;
+  --title-dark-accent:#FFC66B;
+  --title-dark-accent-2:#FF8A3D;
+  --title-cream:#1A0F0A;
+  --title-cream-accent:#C2410C;
   --radius:20px;
   --radius-sm:14px;
   --radius-pill:999px;
@@ -76,15 +81,17 @@ button{font:inherit;cursor:pointer}
 .eyebrow::before{content:"";width:24px;height:2px;background:var(--accent);display:inline-block}
 .dark .eyebrow{color:var(--accent-yellow)}
 .dark .eyebrow::before{background:var(--accent-yellow)}
-.h-display{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;line-height:.9;letter-spacing:.01em}
-.h-display span{color:var(--accent)}
-.cream .h-display span{color:var(--accent)}
+.h-display{font-family:'Anton',Impact,sans-serif;text-transform:uppercase;line-height:.88;letter-spacing:.02em;color:var(--title-cream);text-wrap:balance}
+.h-display span{color:var(--title-cream-accent);position:relative}
+.dark .h-display{color:var(--title-dark);text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.dark .h-display span{color:var(--title-dark-accent);background:linear-gradient(100deg,var(--title-dark-accent),var(--title-dark-accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 12px rgba(255,138,61,.35))}
+.cream .h-display span{color:var(--title-cream-accent)}
 /* HERO */
 .hero{padding:28px 20px 40px;display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;max-width:var(--max);margin:0 auto;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 400px at 70% 10%, rgba(255,59,10,.28), transparent 60%), radial-gradient(500px 300px at 10% 90%, rgba(255,199,0,.12), transparent 60%);pointer-events:none}
 .hero-copy{position:relative;z-index:1;padding:12px 0}
-.hero h1{font-family:'Anton',sans-serif;font-size:clamp(44px, 6vw, 72px);line-height:.88;text-transform:uppercase;letter-spacing:.01em}
-.hero h1 em{font-style:normal;color:var(--accent-yellow);-webkit-text-stroke:1px rgba(255,199,0,.0)}
+.hero h1{font-family:'Anton',sans-serif;font-size:clamp(44px, 6vw, 72px);line-height:.86;text-transform:uppercase;letter-spacing:.015em;color:var(--title-dark);text-shadow:0 6px 28px rgba(0,0,0,.45)}
+.hero h1 span{color:var(--title-dark-accent);background:linear-gradient(100deg,var(--title-dark-accent) 0%, var(--title-dark-accent-2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 4px 16px rgba(255,138,61,.4))}
 .hero p{color:var(--muted-dark);margin:16px 0 22px;max-width:520px;font-size:15px}
 .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
 .mini-stats{display:flex;gap:10px;flex-wrap:wrap}
@@ -99,7 +106,7 @@ button{font:inherit;cursor:pointer}
 /* INFERNO */
 .inferno{display:grid;grid-template-columns:.95fr 1.05fr;gap:40px;align-items:center}
 .inferno img{width:100%;aspect-ratio:1.05;object-fit:cover;border-radius:20px;background:#000}
-.inferno h2{font-family:'Anton',sans-serif;font-size:clamp(32px,4vw,48px);line-height:.9;text-transform:uppercase}
+.inferno h2{font-family:'Anton',sans-serif;font-size:clamp(32px,4vw,48px);line-height:.88;text-transform:uppercase;letter-spacing:.02em;color:var(--title-dark)}
 .inferno p{color:var(--muted-dark);margin:14px 0 18px;font-size:15px}
 .price-row{display:flex;align-items:center;gap:14px;margin:14px 0}
 .price{font-family:'Anton',sans-serif;font-size:28px;color:var(--accent-yellow)}
@@ -143,7 +150,7 @@ button{font:inherit;cursor:pointer}
 .paired .box{background:var(--surface);border:1px solid var(--border-cream);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:260px}
 .paired .box img{width:100%;height:100%;object-fit:cover}
 .paired .box .txt{padding:18px;display:flex;flex-direction:column;justify-content:center;gap:8px}
-.paired .box h3{font-family:'Anton',sans-serif;font-size:22px;line-height:.9;text-transform:uppercase}
+.paired .box h3{font-family:'Anton',sans-serif;font-size:22px;line-height:.88;text-transform:uppercase;letter-spacing:.015em;color:var(--title-cream)}
 .paired .box p{font-size:12px;color:var(--muted-cream)}
 .pill-stats{display:flex;gap:8px;margin-top:8px}
 .pill-stats span{background:var(--cream);padding:6px 10px;border-radius:999px;font-size:11px;font-weight:700}
@@ -151,7 +158,7 @@ button{font:inherit;cursor:pointer}
 /* CTA BAND */
 .cta-band{background:var(--bg-dark);border:1px solid var(--border-dark);border-radius:24px;padding:24px;display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;overflow:hidden;position:relative}
 .cta-band::after{content:"A3 RESTAURANT";position:absolute;right:-10px;bottom:-10px;font-family:'Anton',sans-serif;font-size:90px;color:rgba(255,255,255,.04);pointer-events:none;letter-spacing:.04em}
-.cta-band h2{font-family:'Anton',sans-serif;font-size:32px;line-height:.9;text-transform:uppercase}
+.cta-band h2{font-family:'Anton',sans-serif;font-size:32px;line-height:.88;text-transform:uppercase;letter-spacing:.02em;color:var(--title-dark)}
 .cta-band p{color:var(--muted-dark);font-size:13px;margin:10px 0 14px}
 .cta-band img{width:100%;border-radius:18px;aspect-ratio:1.15;object-fit:cover}
 @media(max-width:800px){.cta-band{grid-template-columns:1fr}}
@@ -163,7 +170,7 @@ footer{border-top:1px solid var(--border-dark);padding:36px 20px 18px;background
 .foot-logo{font-family:'Anton',sans-serif;font-size:22px}
 .foot-muted{color:var(--muted-dark);font-size:12px;margin-top:8px}
 .watermark{max-width:var(--max);margin:24px auto 0;text-align:center;font-family:'Anton',sans-serif;font-size:clamp(40px,12vw,120px);letter-spacing:.06em;line-height:.9;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.08)}
-.watermark span{color:var(--accent)}
+.watermark span{color:var(--title-cream-accent)}
 .reveal{opacity:0;transform:translateY(16px);transition:.6s}
 .reveal.in{opacity:1;transform:none}
 </style>
@@ -204,7 +211,7 @@ footer{border-top:1px solid var(--border-dark);padding:36px 20px 18px;background
 <section class="hero">
   <div class="hero-copy reveal">
     <div class="eyebrow">Est. 2008 • Fire & Soil • Ostuni-inspired</div>
-    <h1>SMASHED HOT.<br>STACKED <span style="color:var(--accent-yellow)">BOLD.</span></h1>
+    <h1>SMASHED HOT.<br>STACKED <span>BOLD.</span></h1>
     <p>Wood-fired smash burgers, slow-grown ingredients, and buns toasted in beef dripping. Built for fast decisions, made for lingering.</p>
     <div class="hero-ctas">
       <a href="menu.html" class="btn-pill">Order Now — From Rs. 890 →</a>
@@ -227,7 +234,7 @@ footer{border-top:1px solid var(--border-dark);padding:36px 20px 18px;background
     <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=900&auto=format&fit=crop&q=80" alt="Inferno stack burger">
     <div>
       <div class="eyebrow">Featured • Limited</div>
-      <h2>THE INFERNO<br><span style="color:var(--accent)">STACK</span></h2>
+      <h2>THE INFERNO<br><span>STACK</span></h2>
       <p>Double 120g wagyu smash, aged cheddar, fire-charred jalapeños, nduja mayo, pickled onions. Smashed on a 340°C plancha, stacked in a potato-milk bun.</p>
       <div class="price-row"><span class="price">Rs. 1,650</span><span class="old">Rs. 1,890</span> <span style="background:var(--accent-yellow);color:#000;font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px">SAVE 240</span></div>
       <a href="menu.html" class="btn-pill">Add Inferno — Rs. 1,650</a>
@@ -309,7 +316,7 @@ footer{border-top:1px solid var(--border-dark);padding:36px 20px 18px;background
     <div class="cta-band">
       <div>
         <div class="eyebrow">Dine-in & Delivery</div>
-        <h2>READY TO BRING<br><span style="color:var(--accent)">THE FIRE?</span></h2>
+        <h2>READY TO BRING<br><span>THE FIRE?</span></h2>
         <p>Reserve a table or fire an order — same kitchen, same crust, wherever you eat.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap"><a href="reserve.html#form" class="btn-pill">Reserve Table →</a><a href="menu.html" class="btn-ghost" style="border-color:var(--border-cream);color:var(--text-cream)">Order Delivery</a></div>
       </div>
@@ -327,7 +334,7 @@ footer{border-top:1px solid var(--border-dark);padding:36px 20px 18px;background
     <div><b style="font-size:12px;letter-spacing:.1em">VISIT</b><p class="foot-muted">Via Fiori 12, Gulberg<br>Lahore • +92 300 123 4567<br>Open Daily 11am — 11pm</p></div>
     <div><b style="font-size:12px;letter-spacing:.1em">FOLLOW</b><p class="foot-muted" style="line-height:2"><a href="#">Instagram</a><br><a href="#">TikTok</a><br><a href="reserve.html">Contact</a></p></div>
   </div>
-  <div class="watermark">BUN <span>FIRE</span></div>
+  <div class="watermark">A3 <span>RESTAURANT</span></div>
   <div style="max-width:var(--max);margin:12px auto 0;color:var(--muted-dark);font-size:11px;line-height:1.6;text-align:center">A3 Restaurant is a bold burger restaurant concept designed around a fiery brand identity, mouth-watering product visuals, and a smooth online ordering experience. Dark cinematic backgrounds, red-orange fire accents, bold display typography, and high-contrast food imagery create a strong first impression for a modern smash burger brand.</div>
 </footer>
 
