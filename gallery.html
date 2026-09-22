@@ -63,15 +63,81 @@ footer{border-top:1px solid var(--border-dark);padding:36px 20px;background:var(
 .foot-muted{color:var(--muted-dark);font-size:12px;margin-top:8px}
 .watermark{max-width:var(--max);margin:24px auto 0;text-align:center;font-family:'Anton',sans-serif;font-size:clamp(40px,12vw,120px);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.08);letter-spacing:.06em}
 .reveal{opacity:0;transform:translateY(16px);transition:.6s}.reveal.in{opacity:1;transform:none}
+
+/* --- NAV ANIMATIONS --- */
+.nav-wrap{transition:background .3s, box-shadow .3s, backdrop-filter .3s}
+.nav-wrap.scrolled{background:rgba(15,8,5,.98);box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.logo{transition:transform .25s ease}
+.logo:hover{transform:translateY(-1px)}
+.logo:hover .logo-mark{transform:rotate(-6deg) scale(1.06);box-shadow:0 6px 18px rgba(255,59,10,.45)}
+.logo-mark{transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s}
+.nav-links a{position:relative;transition:color .22s}
+.nav-links a::after{content:"";position:absolute;left:50%;bottom:-6px;width:0;height:2px;background:var(--accent);transition:width .26s cubic-bezier(.4,0,.2,1), left .26s, opacity .2s;opacity:0}
+.nav-links a:hover::after, .nav-links a:focus-visible::after{width:100%;left:0;opacity:1}
+.nav-links a[aria-current="page"]::after{width:100%;left:0;opacity:1}
+.nav-links .btn-pill{transition:transform .2s, box-shadow .2s, background .2s}
+.nav-links .btn-pill:hover{transform:translateY(-1px) scale(1.02);box-shadow:0 6px 18px rgba(255,59,10,.35)}
+.nav-links .btn-pill:active{transform:translateY(0) scale(.98)}
+.hamburger{position:relative;display:none;width:42px;height:42px;border:1px solid var(--border-dark);border-radius:10px;background:rgba(255,255,255,.04);place-items:center;gap:4px;flex-direction:column;justify-content:center;transition:border-color .2s, background .2s}
+.hamburger span{display:block;width:18px;height:2px;background:var(--text-dark);border-radius:2px;transition:transform .26s cubic-bezier(.4,0,.2,1), opacity .2s, width .2s}
+.hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hamburger[aria-expanded="true"] span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.hamburger:hover{border-color:rgba(255,247,237,.2);background:rgba(255,255,255,.08)}
+.mobile-drawer{transform:translateX(100%);opacity:0;transition:transform .32s cubic-bezier(.4,0,.2,1), opacity .26s}
+.mobile-drawer.open{transform:translateX(0);opacity:1}
+.mobile-drawer a{opacity:0;transform:translateY(8px);transition:opacity .3s, transform .3s, color .2s}
+.mobile-drawer.open a{opacity:1;transform:none}
+.mobile-drawer.open a:nth-child(2){transition-delay:.04s}
+.mobile-drawer.open a:nth-child(3){transition-delay:.08s}
+.mobile-drawer.open a:nth-child(4){transition-delay:.12s}
+.mobile-drawer.open a:nth-child(5){transition-delay:.16s}
+.mobile-drawer.open a:nth-child(6){transition-delay:.20s}
+@media(max-width:900px){.hamburger{display:flex}}
+@media(prefers-reduced-motion:reduce){.nav-wrap,.logo,.logo-mark,.nav-links a::after,.hamburger span,.mobile-drawer,.mobile-drawer a{transition:none}}
+
 </style>
 </head>
-<body><a href="#main" class="skip" style="position:absolute;left:-999px">Skip to content</a><style>.skip:focus{left:16px;top:16px;width:auto;height:auto;background:#fff;color:#000;padding:8px 14px;position:fixed;z-index:9999;border-radius:8px}</style>
+<body><a href="#main" class="skip" style="position:absolute;left:-999px">Skip to content</a><style>.skip:focus{left:16px;top:16px;width:auto;height:auto;background:#fff;color:#000;padding:8px 14px;position:fixed;z-index:9999;border-radius:8px}
+/* --- NAV ANIMATIONS --- */
+.nav-wrap{transition:background .3s, box-shadow .3s, backdrop-filter .3s}
+.nav-wrap.scrolled{background:rgba(15,8,5,.98);box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.logo{transition:transform .25s ease}
+.logo:hover{transform:translateY(-1px)}
+.logo:hover .logo-mark{transform:rotate(-6deg) scale(1.06);box-shadow:0 6px 18px rgba(255,59,10,.45)}
+.logo-mark{transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s}
+.nav-links a{position:relative;transition:color .22s}
+.nav-links a::after{content:"";position:absolute;left:50%;bottom:-6px;width:0;height:2px;background:var(--accent);transition:width .26s cubic-bezier(.4,0,.2,1), left .26s, opacity .2s;opacity:0}
+.nav-links a:hover::after, .nav-links a:focus-visible::after{width:100%;left:0;opacity:1}
+.nav-links a[aria-current="page"]::after{width:100%;left:0;opacity:1}
+.nav-links .btn-pill{transition:transform .2s, box-shadow .2s, background .2s}
+.nav-links .btn-pill:hover{transform:translateY(-1px) scale(1.02);box-shadow:0 6px 18px rgba(255,59,10,.35)}
+.nav-links .btn-pill:active{transform:translateY(0) scale(.98)}
+.hamburger{position:relative;display:none;width:42px;height:42px;border:1px solid var(--border-dark);border-radius:10px;background:rgba(255,255,255,.04);place-items:center;gap:4px;flex-direction:column;justify-content:center;transition:border-color .2s, background .2s}
+.hamburger span{display:block;width:18px;height:2px;background:var(--text-dark);border-radius:2px;transition:transform .26s cubic-bezier(.4,0,.2,1), opacity .2s, width .2s}
+.hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hamburger[aria-expanded="true"] span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.hamburger:hover{border-color:rgba(255,247,237,.2);background:rgba(255,255,255,.08)}
+.mobile-drawer{transform:translateX(100%);opacity:0;transition:transform .32s cubic-bezier(.4,0,.2,1), opacity .26s}
+.mobile-drawer.open{transform:translateX(0);opacity:1}
+.mobile-drawer a{opacity:0;transform:translateY(8px);transition:opacity .3s, transform .3s, color .2s}
+.mobile-drawer.open a{opacity:1;transform:none}
+.mobile-drawer.open a:nth-child(2){transition-delay:.04s}
+.mobile-drawer.open a:nth-child(3){transition-delay:.08s}
+.mobile-drawer.open a:nth-child(4){transition-delay:.12s}
+.mobile-drawer.open a:nth-child(5){transition-delay:.16s}
+.mobile-drawer.open a:nth-child(6){transition-delay:.20s}
+@media(max-width:900px){.hamburger{display:flex}}
+@media(prefers-reduced-motion:reduce){.nav-wrap,.logo,.logo-mark,.nav-links a::after,.hamburger span,.mobile-drawer,.mobile-drawer a{transition:none}}
+
+</style>
 <div class="nav-wrap"><nav class="nav"><a href="index.html" class="logo" aria-label="A3 Restaurant home">
       <span class="logo-mark" aria-hidden="true">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C12 2 7.2 6.9 7.2 11.4C7.2 13.7 8.3 15.9 10.4 17.1C9.8 16.2 9.4 15 9.4 13.7C9.4 11 11.1 8.5 13.2 6.6C13.7 7.9 14 9.3 14 10.7C14 11.9 13.7 13 13.1 14C15.1 12.9 16.8 10.6 16.8 7.9C16.8 7.9 12 2 12 2Z" fill="white"/><circle cx="12" cy="18.5" r="1.2" fill="white" opacity="0.9"/></svg>
       </span>
       <span class="logo-type"><span class="logo-a3">A3</span><span class="logo-sub">RESTAURANT</span></span>
-    </a><div class="nav-links"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="story.html">Story</a><a href="gallery.html" aria-current="page">Gallery</a><a href="reserve.html">Reserve</a><a href="reserve.html#form" class="btn-pill">Get in touch →</a></div><button class="hamburger" id="ham">☰</button></nav></div>
+    </a><div class="nav-links"><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="story.html">Story</a><a href="gallery.html" aria-current="page">Gallery</a><a href="reserve.html">Reserve</a><a href="reserve.html#form" class="btn-pill">Get in touch →</a></div><button class="hamburger" id="ham" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span><span></span></button></nav></div>
 <div class="mobile-drawer" id="drawer"><button id="close" style="align-self:flex-end;background:none;border:1px solid #2E211B;color:#fff;width:42px;height:42px;border-radius:10px">✕</button><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="story.html">Story</a><a href="gallery.html">Gallery</a><a href="reserve.html">Reserve</a></div>
 <div class="ticker"><div class="ticker-track"><span>GALLERY <i></i> HOT, FRESH AND HEARDY <i></i> COME HUNGRY LEAVE LOADED</span><span>GALLERY <i></i> HOT, FRESH AND HEARDY <i></i> COME HUNGRY LEAVE LOADED</span><span>GALLERY <i></i> HOT, FRESH AND HEARDY <i></i> COME HUNGRY LEAVE LOADED</span><span>GALLERY <i></i> HOT, FRESH AND HEARDY <i></i> COME HUNGRY LEAVE LOADED</span></div></div>
 
@@ -114,6 +180,11 @@ lbClose.addEventListener('click',()=>lb.close()); lb.addEventListener('click',e=
 document.addEventListener('keydown',e=>{if(e.key==='Escape' && lb.open) lb.close()});
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Nav scroll + hamburger morph
+const navWrap=document.querySelector('.nav-wrap');
+if(navWrap){const onScroll=()=>{navWrap.classList.toggle('scrolled', window.scrollY>16)}; window.addEventListener('scroll', onScroll, {passive:true}); onScroll();}
+
 </script>
 </body>
 </html>
